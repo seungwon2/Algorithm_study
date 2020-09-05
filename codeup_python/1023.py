@@ -7,5 +7,3 @@ total_length = len(str(decimal_a))-2
 
 print(int_a)
 print(int(decimal_a*int(10**total_length)))
-
-
