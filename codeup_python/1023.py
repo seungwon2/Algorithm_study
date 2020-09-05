@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 import math
 
 a = float(input("실수를 하나 입력하세요: "))

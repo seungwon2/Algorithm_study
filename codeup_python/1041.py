@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*- 
 first_letter = input("input something: ")
 
 if (type(first_letter)==int):
