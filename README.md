@@ -4,4 +4,4 @@
 
 algorithm study 🐬 ✨
 
-✨ 🐍 python 🐍 ✨
+✨ 🐍 python 사용 🐍 ✨
