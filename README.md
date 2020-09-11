@@ -2,4 +2,6 @@
 
 # algorithm_study
 
-algorithm study🐬✨
+algorithm study 🐬 ✨
+
+✨ 🐍 python 사용 🐍 ✨
