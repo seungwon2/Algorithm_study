@@ -7,6 +7,7 @@ while True:
 
     if numbers[0] == 0:
         break
+
     big_list = list(combinations(numbers, 6))
     for combination in big_list:
         for number in combination:
