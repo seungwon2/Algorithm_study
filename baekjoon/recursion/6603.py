@@ -2,14 +2,13 @@ from itertools import combinations
 
 while True:
     numbers = list(map(int, input().split()))
+    if numbers[0] == 0:
+        break
+    del numbers[0]
     numbers = list(set(numbers))
     numbers.sort()
 
-    if numbers[0] == 0:
-        break
-
-    big_list = list(combinations(numbers, 6))
-    for combination in big_list:
+    for combination in list(combinations(numbers, 6)):
         for number in combination:
             print(number, end=" ")
         print()
