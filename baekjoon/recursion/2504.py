@@ -49,5 +49,4 @@ for element in calculated:
         exit(0)
     else:
         result += element
-
 print(result)
