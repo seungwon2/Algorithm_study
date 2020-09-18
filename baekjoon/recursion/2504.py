@@ -10,7 +10,7 @@ for bracket in brackets:
                 if temp == 0:
                     calculated.append(2)
                 else:
-                    calculated.append(2*temp)
+                    calculated.append(temp*2)
                 break
             elif top == "[":
                 print("0")
@@ -28,7 +28,7 @@ for bracket in brackets:
                 if temp == 0:
                     calculated.append(3)
                 else:
-                    calculated.append(3*temp)
+                    calculated.append(temp*3)
                 break
             elif top == "(":
                 print("0")
