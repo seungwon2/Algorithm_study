@@ -1,36 +1,38 @@
-from itertools import combinations
+import sys
 
 length = int(input(""))
-numbers = list(map(int, input("").split(" ")))
-numbers_set = []
+numbers = list(map(int, input("").split()))
+DP = [[-1000000001, -1]]
+Trace = [0]*length
 
 
-numbers = list(set(numbers))
-numbers.sort()
+for i in range(length):
 
+    low = 0
+    high = len(DP)-1
 
-def increase_check(numbers, length):
-    temp = inc = 0
-    for i in range(length-1):
-        temp = numbers[i+1] - numbers[i]
-        if temp == inc:
-            temp = inc
-        elif temp == 0:
-            inc = temp
+    while low <= high:
+        mid = (low+high)//2
+        if DP[mid][0] < numbers[i]:
+            low = mid+1
         else:
-            temp = 0
-    if temp == inc:
-        print(len(numbers), end="\n")
-        for number in numbers:
-            print(number, end=" ")
-        exit()
+            high = mid-1
 
+    if low >= len(DP):
+        Trace[i] = DP[low-1][1]
+        DP.append([numbers[i], i])
+    else:
+        DP[low][0] = numbers[i]
+        DP[low][1] = i
+        Trace[i] = DP[low-1][1]
 
-for i in range(0, len(numbers)+1):
-    c = combinations(numbers, i)
-    numbers_set.extend(c)
+print(len(DP)-1)
 
-numbers_set.reverse()
+result = []
+cur_index = DP[len(DP)-1][1]
+while cur_index != -1:
+    result.append(numbers[cur_index])
+    cur_index = Trace[cur_index]
 
-for com in numbers_set:
-    increase_check(com, len(com))
+for i in range(len(result)-1, -1, -1):
+    print(result[i], end=" ")
