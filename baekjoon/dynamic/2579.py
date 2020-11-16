@@ -3,7 +3,7 @@ stairScores = []
 for i in range(inputNum):
     inputScore = int(input())
     stairScores.append(inputScore)
-maxScore = [0] * inputNum
+maxScore = [0] * inputNum+3
 for i in range(inputNum):
 
     if i == 0:
