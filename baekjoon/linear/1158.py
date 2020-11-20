@@ -12,7 +12,4 @@ while True:
     answer.append(inputNum[kill])
     del inputNum[kill]
 
-print("<", end="")
-for i in range(N-1):
-    print(answer[i], end=", ")
-print(answer[N-1], end=">")
+print("<", ", ".join(map(str, answer)), ">", sep="")
