@@ -1,30 +1,37 @@
 N = int(input(""))
-tree = ["A"]+["0"]*(N**2)
-
+tree = {}
+root = None
 for i in range(N):
     node_info = list(input("").split(" "))
-    parent_index = tree.index(node_info[0])
-    if node_info[1] != ".":
-        tree[parent_index*2+1] = node_info[1]
-    if node_info[2] != ".":
-        tree[parent_index*2+2] = node_info[2]
+    tree[node_info[0]] = [node_info[1], node_info[2]]
+
+
+def preOrder(tree, root):
+    if root == '.':
+        return
+    print(root, end="")
+    preOrder(tree, tree[root][0])
+    preOrder(tree, tree[root][1])
+
+
+def inOrder(tree, root):
+    if root == '.':
+        return
+    inOrder(tree, tree[root][0])
+    print(root, end="")
+    inOrder(tree, tree[root][1])
 
 
 def postOrder(tree, root):
-    print("root: ", root)
-    print(tree[root])
-    if tree[root] == "G":
+    if root == '.':
         return
-    if tree[root*2+1] != "0":
-        return postOrder(tree, root*2+1)
-    else:
-        if tree[root*2+2] != "0":
-            return postOrder(tree, root*2+2)
-        else:
-            if root % 2 == 0:
-                return postOrder(tree, root//2)
-            else:
-                return postOrder(tree, root//2+1)
+    postOrder(tree, tree[root][0])
+    postOrder(tree, tree[root][1])
+    print(root, end="")
 
 
-postOrder(tree, 0)
+preOrder(tree, "A")
+print()
+inOrder(tree, "A")
+print()
+postOrder(tree, "A")
