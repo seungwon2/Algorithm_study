@@ -1,52 +1,41 @@
-N = int(input(""))
-tree = {}
+import sys
+sys.setrecursionlimit(10**9)
 
-for i in range(N-1):
-    parent, child, weight = list(map(int, input("").split()))
-    if parent not in tree:
-        tree[parent] = [[child, weight]]
-    else:
-        tree[parent].append([child, weight])
-print(tree)
+V = int(sys.stdin.readline())
 
-leaf = []
-for i in range(1, N+1):
-    if i not in tree:
-        leaf.append(i)
-print(leaf)
-# root에서 leaf까지 최장 거리
-root_length = 0
-leaf_length = 0
-leaf_length_final = 0
+matrix = [[] for _ in range(V+1)]
+# 입력받는 부분
+for _ in range(V-1):
+    s, e, d = map(int, sys.stdin.readline().split())
+    matrix[s].append([e, d])
+    matrix[e].append([s, d])
 
 
-def root_longest(node):
-
-    if node in leaf:
-        return 0
-    if len(tree[node]) == 2:
-        return max(root_length, tree[node][0][1] + root_longest(tree[node][0][0]), tree[node][1][1] + root_longest(tree[node][1][0]))
-    else:
-        return max(root_length, tree[node][0][1] + root_longest(tree[node][0][0]))
+# 첫번째 DFS결과
+result1 = [0 for _ in range(V+1)]
 
 
-# leaf에서 leaf까지 최장 거리
-def leaf_longest(node):
-    if node in leaf:
-        return 0
-    print("길이", len(tree[node]))
-    if len(tree[node]) == 2:
-        return max(leaf_length, leaf_longest(tree[node][0][0]), leaf_longest(tree[node][1][0]))
-    else:
-        return max(leaf_length, leaf_longest(tree[node][0][1]))
+def DFS(start, matrix, result):
+    for e, d in matrix[start]:
+        if result[e] == 0:
+            result[e] = result[start]+d
+            DFS(e, matrix, result)
 
 
-print(root_longest(1))
-
-for i in tree:
-    print(i)
-    print(leaf_longest(i))
-    leaf_length_final = max(leaf_length_final, leaf_longest(i))
+DFS(1, matrix, result1)  # 아무노드에서 시작해준다.
+result1[1] = 0  # 루트노드가 정해져 있지않아 양방향으로 입력을 받기때문에 해당
 
 
-print(max(root_length, leaf_length_final))
+tmpmax = 0  # 최대값 구하기
+index = 0  # 최장경로 노드
+
+for i in range(len(result1)):
+    if tmpmax < result1[i]:
+        tmpmax = result1[i]
+        index = i
+
+# 최장경로 노드에서 다시 DFS를 통해 트리지름구하기
+result2 = [0 for _ in range(V+1)]
+DFS(index, matrix, result2)
+result2[index] = 0
+print(max(result2))
