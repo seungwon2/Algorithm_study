@@ -2,7 +2,7 @@ from sys import stdin, setrecursionlimit
 
 setrecursionlimit(100000000)
 
-Tree = [int(x) for x in stdin.readlines()]
+Tree = list(map(int, (input("").split())))
 
 
 def preToPost(tree, node, bound):

@@ -10,7 +10,6 @@ for _ in range(V-1):
     matrix[s].append([e, d])
     matrix[e].append([s, d])
 
-
 # 첫번째 DFS결과
 result1 = [0 for _ in range(V+1)]
 
@@ -23,8 +22,6 @@ def DFS(start, matrix, result):
 
 
 DFS(1, matrix, result1)  # 아무노드에서 시작해준다.
-result1[1] = 0  # 루트노드가 정해져 있지않아 양방향으로 입력을 받기때문에 해당
-
 
 tmpmax = 0  # 최대값 구하기
 index = 0  # 최장경로 노드
@@ -37,5 +34,4 @@ for i in range(len(result1)):
 # 최장경로 노드에서 다시 DFS를 통해 트리지름구하기
 result2 = [0 for _ in range(V+1)]
 DFS(index, matrix, result2)
-result2[index] = 0
 print(max(result2))
