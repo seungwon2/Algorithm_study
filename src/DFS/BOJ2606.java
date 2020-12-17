@@ -1,11 +1,6 @@
 package DFS;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Scanner;
-
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class BOJ2606 {
     static int computer, Link;
