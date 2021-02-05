@@ -8,12 +8,6 @@ import static java.lang.Math.min;
 
 public class BOJ6549 {
     static int num;
-    static int right;
-    static int left;
-    static int mid;
-    static int hi;
-    static int lo;
-    static int result = 0;
     static int[] height;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -36,13 +30,13 @@ public class BOJ6549 {
         }
 
         //오른쪽이나 왼쪽 사각형 각개격파
-        mid = (right + left) / 2;
-        result = max(divide(left, mid), divide(mid+1, right));
+        int mid = (right + left) / 2;
+        int result = max(divide(left, mid), divide(mid+1, right));
 
         //걸쳐진 사각형 계산
         //lo, hi 설정
-        lo = mid;
-        hi = mid + 1;
+        int lo = mid;
+        int hi = mid + 1;
         int minHeight = min(height[lo], height[hi]);
         //mid와 mid+1만 포함하는 사각형 넓이 고려!
         result = max(result, minHeight * 2);
