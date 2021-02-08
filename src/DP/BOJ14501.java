@@ -30,7 +30,7 @@ public class BOJ14501 {
         for (int i = 1; i <= day; i++) {
             int working_day = pay[i][0];
             int today_pay = pay[i][1];
-            int last_day;
+            int start_day;
             int today = i;
             int total_pay = 0;
 
@@ -41,9 +41,9 @@ public class BOJ14501 {
             //근무 끝나는 날까지 계속 반복문 돌며 수입 출력
             else {
                 while (true) {
-                    last_day = today + working_day;
-                    //기저 사례: 마지막 날이 총 날보다 크면
-                    if (last_day > day) {
+                    start_day = today + working_day;
+                    //기저 사례: 새로 시작하는 날이 총 근무일보다 크면
+                    if (start_day > day) {
                         //해당 날까지의 총액을 메모하고 끝냄
                         memo[i] = total_pay;
                         break;
@@ -52,7 +52,7 @@ public class BOJ14501 {
                         //아닐 경우 그날 페이를 total_pay에 더함
                         total_pay = total_pay + today_pay;
                         //마지막날을 오늘로 해서 검사함
-                        today = last_day;
+                        today = start_day;
                         today_pay = pay[today][1];
                         working_day = pay[today][0];
                     }
