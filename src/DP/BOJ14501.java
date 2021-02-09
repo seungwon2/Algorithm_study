@@ -43,7 +43,11 @@ public class BOJ14501 {
                 while (true) {
                     start_day = today + working_day;
                     //기저 사례: 새로 시작하는 날이 총 근무일보다 크면
-                    if (start_day > day) {
+                    if (start_day-1 ==day){
+                        memo[i] = total_pay + today_pay;
+                        break;
+                    }
+                    else if (start_day > day) {
                         //해당 날까지의 총액을 메모하고 끝냄
                         memo[i] = total_pay;
                         break;
@@ -60,9 +64,6 @@ public class BOJ14501 {
             }
         }
         int max = 0;
-        for (int i : memo) {
-            System.out.println("memo i = " + i);
-        }
         for (int i = 1; i < day + 1; i++) {
             max = max(max, memo[i]);
         }
