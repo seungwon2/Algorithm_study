@@ -22,17 +22,6 @@ public class Main {
             arr[i] = Long.parseLong(br.readLine());
         }
 
-        // 2^k >= N인 최소의 k를 찾아야 함.
-        // 양변에 log을 취하면,
-        // k >= logN / log2
-        // (logN / log2)의 값을 올림한 후 1을 더하면 k가 됨.
-        // 위에서 구한 k를 제곱하면 세그먼트 트리의 size를 구할 수 있음.
-
-//		int k = (int) Math.ceil(Math.log(N) / Math.log(2)) + 1;
-//		int size = (int) Math.pow(2, k);
-//		
-//		tree = new long[size];
-
         // 사이즈를 구하는 위의 과정이 귀찮으면, 단순히 N에 4를 곱한 사이즈를 사용해도 무방함.
         tree = new long[N * 4];
 
