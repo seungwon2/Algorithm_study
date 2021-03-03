@@ -10,9 +10,9 @@ public class BOJ1697 {
     static int[] check = new int[100001];
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        K = sc.nextInt();
+        Scanner s = new Scanner(System.in);
+        N = s.nextInt();
+        K = s.nextInt();
 
         if (N == K) {
             System.out.println(0);
