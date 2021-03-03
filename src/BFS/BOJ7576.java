@@ -29,13 +29,13 @@ public class BOJ7576 {
         M = s.nextInt();
 
         box = new int[M][N];
-
+        //박스 map을 만든다
         for(int i=0; i<M; i++) {
             for(int j=0; j<N; j++) {
                 box[i][j] = s.nextInt();
             }
         }
-
+        //bfs 돌리기
         bfs();
     }
 
@@ -46,6 +46,7 @@ public class BOJ7576 {
         // 토마토가 있는 좌표 찾아서 Queue에 넣기
         for(int i=0; i<M; i++) {
             for(int j=0; j<N; j++) {
+                //만약 익은 토마토가 있다면 큐에 넣는다
                 if(box[i][j] == 1)
                     q.offer(new Dot(i, j, 0));
             }
@@ -53,16 +54,20 @@ public class BOJ7576 {
 
         // bfs 시작
         while(!q.isEmpty()) {
+            //큐에 있는 토마토 꺼냄
             Dot dot = q.poll();
+            //토마토 일수
             day = dot.day;
-
+            //사방을 검사
             for(int i=0; i<4; i++) {
                 int nx = dot.x + dx[i];
                 int ny = dot.y + dy[i];
 
                 if(0 <= nx && nx < M && 0 <= ny && ny < N) {
                     if(box[nx][ny] == 0) {
+                        //익게 만든다 호호
                         box[nx][ny] = 1;
+                        //새로운 토마토를 큐에 넣음
                         q.add(new Dot(nx, ny, day+1));
                     }
                 }
@@ -72,6 +77,7 @@ public class BOJ7576 {
         // 토마토가 다 익었는지 확인
         if(checkTomato())
             System.out.println(day);
+        //다 안익었으면 -1을 출력
         else
             System.out.println(-1);
     }
