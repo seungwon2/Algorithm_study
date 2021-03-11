@@ -24,6 +24,10 @@ public class BOJ12865 {
         }
         System.out.println(knapsack(N - 1, K));
     }
+    //점화식
+    //if i=0, k=0 --> f(i,k) = 0
+    //if w[i]>k --> f(i,k) = f(i-1,k)
+    //if 0<i , w[i]<=k --> f(i,k) = max( f(i-1, k-w[i]) + V[i],   f(i-1,k))
     static int knapsack(int i, int k) {
     // i가 0미만, 즉 범위 밖이 된다면
         if (i < 0)
