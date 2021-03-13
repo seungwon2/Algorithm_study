@@ -38,7 +38,7 @@ public class BOJ10844 {
             if(val == 0) {
                 dp[digit][val] = recur(digit - 1 ,1);
             }
-    // val이 1일경우 다음은 8밖에 못옴
+    // val이 9일경우 다음은 8밖에 못옴
             else if(val== 9) {
                 dp[digit][val] = recur(digit - 1, 8);
             }
