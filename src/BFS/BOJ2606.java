@@ -35,7 +35,6 @@ public class BOJ2606 {
         while (!q.isEmpty()){
             int cur = q.poll();
                 for (int i = 0; i < computer + 1; i++) {
-
                     if (map[cur][i] == 1 && visited[i]==0) {
                         q.add(i);
                         count++;
