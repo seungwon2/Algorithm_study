@@ -1,53 +1,73 @@
 package BFS;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class BOJ2178 {
-    static int[][] map;
-    static int[] dx = {0, 0, -1, 1};
-    static int[] dy = {-1, 1, 0, 0};
-    static int[][] isVisited;
+
+    static int[][] arr;
+    static boolean[][] visited;
+    static int[] dx = { -1, 0, 1, 0 };
+    static int[] dy = { 0, -1, 0, 1 };
     static int N;
     static int M;
-    static Queue<Integer> q = new LinkedList<>();
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        N = s.nextInt();
-        M = s.nextInt();
 
-        map = new int[N][M];
-        isVisited = new int[N][M];
+    public static void main(String args[]) throws Exception {
+         Scanner sc = new Scanner(System.in);
 
+        N = sc.nextInt();
+        M = sc.nextInt();
+        sc.nextLine();
+        arr = new int[N][M];
+        visited = new boolean[N][M];
         for (int i = 0; i < N; i++) {
-            String[] temp = s.next().split("");
+            String str = sc.nextLine();
             for (int j = 0; j < M; j++) {
-                map[i][j] = Integer.parseInt(temp[j]);
+                arr[i][j] = str.charAt(j)-'0';
+                visited[i][j] = false;
             }
         }
-        bfs();
+        visited[0][0] = true;
+        BFS(0, 0);
+        System.out.println(arr[N - 1][M - 1]);
     }
-    static void bfs(){
-        q.add(map[0][0]);
-        isVisited[0][0] = 1;
 
-        int nx = 0, ny = 0;
+    static public void BFS(int x, int y) {
 
-        while(!q.isEmpty()){
-            q.poll();
+        Queue<Dot> q = new LinkedList<Dot>();
+        q.add(new Dot(x, y));
+        //큐가 끝날때 까지
+        while (!q.isEmpty()) {
+            Dot d = q.poll();
             for (int i = 0; i < 4; i++) {
-                if (nx + dx[i] < M && nx + dx[i] >= 0 && ny + dy[i] >= 0 && ny + dy[i] < N && map[nx + dx[i]][ny + dy[i]] == 1
-                        && isVisited[nx + dx[i]][ny + dy[i]] == 0) {
-                    q.add(map[nx + dx[i]][ny + dy[i]]);
-                    isVisited[nx + dx[i]][ny + dy[i]] = 1;
-                    map[nx + dx[i]][ny + dy[i]] = map[nx][ny] + 1;
+                //다음 방문할 좌표 nextX, nextY
+                int nextX = d.x + dx[i];
+                int nextY = d.y + dy[i];
+
+                //다음 좌표가 범위를 넘어갈때 건너뛰기
+                if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) {
+                    continue;
                 }
+                //이미 방문했던 점이면 건너뛰기
+                if (visited[nextX][nextY] || arr[nextX][nextY] == 0) {
+                    continue;
+                }
+                //다음에 방문할 좌표를 큐에 넣는다.
+                q.add(new Dot(nextX, nextY));
+                //배열안에 다음 방문할 곳은 현재 방문했던 점보다 1칸 더 가야하므로 +1
+                arr[nextX][nextY] = arr[d.x][d.y] + 1;
+                //다음 좌표는 방문했음으로 표시
+                visited[nextX][nextY] = true;
             }
         }
+    }
+}
 
-        System.out.println("map = " + map[N][M]);
+class Dot {
+    int x;
+    int y;
 
-
+    Dot(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
