@@ -19,16 +19,14 @@ public class BOJ1806 {
         int sum = 0;
         while(true){
             if (sum >= S) {
-                sum -= numbers[start];
                 length = Math.min(length, (end - start));
-                start++;
+                sum -= numbers[start++];
             }
             else if (end == N) {
                 break;
             }
             else {
-                sum += numbers[end];
-                end++;
+                sum += numbers[end++];
             }
         }
         if (length == Integer.MAX_VALUE) {
