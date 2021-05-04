@@ -14,22 +14,26 @@ public class BOJ1806 {
         for (int i = 0; i < N; i++) {
             numbers[i] = s.nextInt();
         }
+
         int length = Integer.MAX_VALUE;
-        while (start < N && end < N) {
-            int sum = 0;
-            for (int i = start; i <= end; i++) {
-                sum += numbers[i];
-            }
-            if (sum < S) {
-                end++;
-            } else {
-                length = Math.min(length, end - start + 1);
+        int sum = 0;
+        while(true){
+            if (sum >= S) {
+                sum -= numbers[start];
+                length = Math.min(length, (end - start));
                 start++;
-                if (end < start) {
-                    end++;
-                }
+            }
+            else if (end == N) {
+                break;
+            }
+            else {
+                sum += numbers[end];
+                end++;
             }
         }
-        System.out.println(length);
+        if (length == Integer.MAX_VALUE) {
+            System.out.println(0);
+        }
+        else System.out.println(length);
     }
 }
