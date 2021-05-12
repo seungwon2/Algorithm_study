@@ -21,7 +21,6 @@ public class EPPER_15_5 {
                     answer.append("1");
                 }
                 prev = input.charAt(0);
-                count += 1;
             }
             //이전 값과 같으면 count만 올림
             else if (prev == input.charAt(i)) {
@@ -29,13 +28,13 @@ public class EPPER_15_5 {
             }
             //이전 값과 다르면 count 리셋하고 값만큼 알파벳을 올려서 string에 추가
             else {
-                answer.append(Character.toString((char) count + 64));
+                answer.append((char) ('A' + count));
                 prev = input.charAt(i);
-                count = 1;
+                count = 0;
             }
         }
         //마지막에 남아있는 count를 알파벳으로 변환!
-        answer.append(Character.toString((char) count + 64));
+        answer.append((char) ('A' + count));
         return answer;
     }
 }
